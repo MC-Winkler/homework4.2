@@ -6,6 +6,7 @@ package edu.elon.sql;
 
 import java.sql.*;
 import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 public class SQLUtil {
 
@@ -16,11 +17,14 @@ public class SQLUtil {
         ResultSetMetaData metaData = results.getMetaData();
         int columnCount = metaData.getColumnCount();
         
+        
         String name = "";
         String id = "";
         String email = "";
         String title = "";
         String duedateString = "";
+        
+        SimpleDateFormat formattedDate = new SimpleDateFormat("MM-dd-yyyy");
         Date duedate;
         
         Calendar cal = Calendar.getInstance();
@@ -79,7 +83,7 @@ public class SQLUtil {
           htmlTable.append("</td>");
 
           htmlTable.append("<td>");
-          htmlTable.append(duedateString);
+          htmlTable.append(formattedDate.format(duedate));
           htmlTable.append("</td>");
 
           htmlTable.append("<td>");
@@ -88,7 +92,8 @@ public class SQLUtil {
           htmlTable.append("</td>");
 
           htmlTable.append("<td>");
-          htmlTable.append("<a class=\"button\" href=\"library?action=checkin&id=" + id + "\" /> Check in </a>" );
+          htmlTable.append("<a class=\"button\" href=\"library?action=checkin&"
+                  + "id=" + id + "\" /> Check in </a>" );
           htmlTable.append("</td>");
 
           htmlTable.append("</tr>");

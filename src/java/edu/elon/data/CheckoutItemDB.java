@@ -15,7 +15,8 @@ public class CheckoutItemDB {
     
         int i = 0;
         String query
-                = "INSERT INTO checkedout (title, firstname, lastname, email, duedate) "
+                = "INSERT INTO checkedout "
+                + "(title, firstname, lastname, email, duedate) "
                 + "VALUES (?, ?, ?, ?, ?);";
         try {
           
@@ -39,7 +40,8 @@ public class CheckoutItemDB {
             dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
           }
           
-          Connection connection = DriverManager.getConnection(dbURL, username, password);
+          Connection connection = 
+                  DriverManager.getConnection(dbURL, username, password);
           PreparedStatement ps = null;
           
           ps = connection.prepareStatement(query);
@@ -87,7 +89,8 @@ public class CheckoutItemDB {
             dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
           }
           
-          Connection connection = DriverManager.getConnection(dbURL, username, password);
+          Connection connection = 
+                  DriverManager.getConnection(dbURL, username, password);
           PreparedStatement ps = null;
           
           ps = connection.prepareStatement(query);
@@ -137,7 +140,8 @@ public class CheckoutItemDB {
             dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
           }
           
-          Connection connection = DriverManager.getConnection(dbURL, username, password);
+          Connection connection = 
+                  DriverManager.getConnection(dbURL, username, password);
           PreparedStatement ps;
           ps = connection.prepareStatement(query);
           resultSet = ps.executeQuery();

@@ -15,14 +15,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.elon.data.ConnectionPool;
 import edu.elon.sql.SQLUtil;
 import java.sql.PreparedStatement;
 import javax.servlet.http.HttpSession;
 
 public class controllerServlet extends HttpServlet {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. 
+    //Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -32,7 +32,8 @@ public class controllerServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, 
+            HttpServletResponse response)
             throws ServletException, IOException {
         doPost(request, response);
 
@@ -48,7 +49,8 @@ public class controllerServlet extends HttpServlet {
      */
     @Override
     @SuppressWarnings("ConvertToStringSwitch")
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, 
+            HttpServletResponse response)
             throws ServletException, IOException {
       
         Connection connection;
@@ -107,7 +109,8 @@ public class controllerServlet extends HttpServlet {
           String lastname = request.getParameter("lastname");
           String email = request.getParameter("email");
           
-          CheckoutItem currentItem = new CheckoutItem (title, firstname, lastname, email);
+          CheckoutItem currentItem = 
+                  new CheckoutItem (title, firstname, lastname, email);
           CheckoutItemDB.insert(currentItem);
           request.setAttribute("currentItem", currentItem);
           url = "/thanks.jsp";
@@ -125,7 +128,7 @@ public class controllerServlet extends HttpServlet {
           url = "/manage.jsp";
         }
         
-        getServletContext().getRequestDispatcher(url).forward(request, response);
+      getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
   

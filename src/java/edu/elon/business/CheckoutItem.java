@@ -5,6 +5,7 @@
 package edu.elon.business;
 
 import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 public class CheckoutItem {
     
@@ -13,6 +14,7 @@ public class CheckoutItem {
     private String lastName;
     private String email;
     private java.sql.Date date;
+    SimpleDateFormat formattedDate = new SimpleDateFormat("MM-dd-yyyy");
     
     public CheckoutItem() {
       title = "";
@@ -27,7 +29,8 @@ public class CheckoutItem {
       
     }
 
-    public CheckoutItem(String title, String firstname, String lastname, String email) {
+    public CheckoutItem(String title, String firstname, 
+            String lastname, String email) {
       this.title = title;
       firstName = firstname;
       lastName = lastname;
@@ -77,5 +80,9 @@ public class CheckoutItem {
     
     public void setDate (java.sql.Date date){
       this.date = date;
+    }
+    
+    public String getFormattedDate() {
+      return formattedDate.format(date);
     }
 }

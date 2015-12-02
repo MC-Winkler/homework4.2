@@ -6,7 +6,7 @@ Copyright (c) 2015 Michael Winkler & Mitchell Thompson
     <p>
         Thank you for your patronage of the Belk Library. You've successfully
         checked out the book, ${currentItem.title}. Please note that this book 
-        is due back on ${currentItem.date}. A friendly email reminder will  be 
+        is due back on ${currentItem.formattedDate}. A friendly email reminder will  be 
         sent to you if this book becomes overdue.
     </p>
     <a href="library" >Return to front page</a>
