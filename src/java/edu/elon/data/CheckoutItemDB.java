@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2015 Michael Winkler & Mitchell Thompson
+ */
+
 package edu.elon.data;
 
 import java.sql.*;
@@ -12,7 +16,7 @@ public class CheckoutItemDB {
         int i = 0;
         String query
                 = "INSERT INTO checkedout (title, firstname, lastname, email, duedate) "
-                + "VALUES (?, ?, ?, ?, ?)";
+                + "VALUES (?, ?, ?, ?, ?);";
         try {
           
           // load the driver
@@ -56,33 +60,56 @@ public class CheckoutItemDB {
         }
     return i;
     }
-/*
-    public static int delete(CheckoutItem item) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
 
-        String query = "DELETE FROM checkedout "
-                + "WHERE Email = ?";
+    public static int delete(String id) {
+      System.out.println("id = " + id);
+        int i = 0;
+        String query = "DELETE FROM checkedout WHERE id = " + id +";";
         try {
-            ps = connection.prepareStatement(query);
-            ps.setString(1, user.getEmail());
+          
+          // load the driver
+          Class.forName("com.mysql.jdbc.Driver");
 
-            return ps.executeUpdate();
+          String dbURL = "jdbc:mysql://localhost:3306/mvc";
+          String username = "root";
+          String password = "sesame";
+
+                //Determine if running on OpenShift by getting value of
+          //OpenShift environement variable. If it is set (non null) then
+          //we are and need to reset some variables. If no then no need to
+          //reset and we are running locally.
+          String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+          if ((host != null) && (host.trim().length() > 1)) {
+            String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+            String appname = System.getenv("OPENSHIFT_APP_NAME");
+            username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+            password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+            dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
+          }
+          
+          Connection connection = DriverManager.getConnection(dbURL, username, password);
+          PreparedStatement ps = null;
+          
+          ps = connection.prepareStatement(query);
+          i = ps.executeUpdate();
+
+          ps.close();
+          connection.close();
         } catch (SQLException e) {
             System.out.println(e);
             return 0;
-        } finally {
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
+        } catch (ClassNotFoundException e){
+            System.out.println(e);
         }
+      return i;
+    
     }
 
-*/
+
     
     public static String selectAll(){
       
-      String query = "SELECT * FROM checkedout";
+      String query = "SELECT * FROM checkedout;";
       String currentTableHTML = "";
       ResultSet resultSet = null;
       

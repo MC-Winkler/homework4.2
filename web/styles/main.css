@@ -4,10 +4,10 @@ Copyright (c) 2015 Michael Winkler && Mitchell Thompson
 body {
   font-family: sans-serif;
   margin: 0 auto;
-  padding: 1em;
   max-width: 900px;
-  width: 98%;
+  padding: 1em;
   text-align: center;
+  width: 98%;
 }
 footer {
   border-top: 2px solid blue;
@@ -15,15 +15,47 @@ footer {
 }
 
 .redOutline {
-    border: 2px solid red;
-    padding: 1.5em;
-    text-align: left;
+  border: 2px solid red;
+  padding: 1.5em;
+  text-align: left;
 }
 
 h1, #header-image {
-margin: 0 auto;
+  margin: 0 auto;
 }
 
 h1 {
-    margin: .5em auto;
+  margin: .5em auto;
+}
+
+h2 {
+  margin-bottom: .5em;
+  margin-top: 0;
+}
+
+td, th {
+  padding: .2em .7em;
+}
+
+
+a.button {
+  appearance: button;
+  color: initial;
+  -moz-appearance: button;
+  text-decoration: none;
+  -webkit-appearance: button;
+}
+
+#labels {
+  float: left;
+  line-height: 1.5;
+  width:10em;
+}
+
+#inputs {
+  line-height: 1.5;
+}
+
+#title {
+  
 }

@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2015 Michael Winkler & Mitchell Thompson
  */
 package edu.elon.controllers;
 
@@ -22,10 +20,6 @@ import edu.elon.sql.SQLUtil;
 import java.sql.PreparedStatement;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author mwinkler3
- */
 public class controllerServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -120,7 +114,15 @@ public class controllerServlet extends HttpServlet {
         }
 
         else if (action.equals("checkin")){
-
+          
+          String id = request.getParameter("id");
+          CheckoutItemDB.delete(id);
+          
+          currentTableHTML = CheckoutItemDB.selectAll();
+          HttpSession session = request.getSession();
+          session.setAttribute("currentTableHTML", currentTableHTML);
+          
+          url = "/manage.jsp";
         }
         
         getServletContext().getRequestDispatcher(url).forward(request, response);

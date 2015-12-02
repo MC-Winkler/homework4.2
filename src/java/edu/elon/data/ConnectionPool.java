@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2015 Michael Winkler & Mitchell Thompson
+ */
+
 package edu.elon.data;
 
 import java.sql.Connection;
